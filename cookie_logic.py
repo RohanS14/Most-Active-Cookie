@@ -13,7 +13,6 @@ def getActiveCookie(lines, date):
             cookieCounts[cookie] += 1
     
     maxActivity = max(list(cookieCounts.values())) if cookieCounts else 0
-
     return [key for key, value in cookieCounts.items() if value == maxActivity]
 
 def getActiveCookieFile(filepath, date):
