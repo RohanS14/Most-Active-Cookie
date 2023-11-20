@@ -4,12 +4,15 @@
 
 <br>This code finds the most active cookie on a specified day. This automates Pytest testing using GitHub Actions.</br>
 
-<br>
+
 Files:
+
 `cookie_logic.py`: Contains core functionality
+
 `cookie_test.py`: Contains command line executable functionality
+
 `cookie_test.py`: Testing with Pytest
-</br>
+
 
 <br>This can be run using:
 ```$ ./most_active_cookie <cookie log filename> -d <date>```
