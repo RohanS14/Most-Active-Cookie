@@ -10,6 +10,7 @@ from cookie_logic import *
 
 def testEmpty():
     '''Check that nothing is returned for no cookies'''
+    print("hello")
     assert getActiveCookieFile("tests/empty.csv", "2018-12-09") == ""
 
 def testOneCookie():
