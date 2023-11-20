@@ -25,6 +25,7 @@ def getActiveCookieFile(filepath, date):
         assert lines[0] == "cookie,timestamp\n"
         
         bestCookies = getActiveCookie(lines, date)
+
         return "\n".join(bestCookies)
     except AssertionError:
         print("Input file header is not cookie,timestamp")        
