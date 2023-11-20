@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+
+import os, sys
+
+# add current working directory to path
+sys.path.insert(0, os.getcwd())
+
+import argparse
+
+def getActiveCookie(lines, date):
+    '''Given lines read from cookie file, find the most active cookie(s).'''
+    cookieCounts = {}
+    for line in lines:
+        line = line.strip()
+        cookie, timestamp = line.split(",")
+        timestamp = timestamp[:10]
+        if date == timestamp:
+            if cookie not in cookieCounts:
+                cookieCounts[cookie] = 0
+            cookieCounts[cookie] += 1
+    
+    maxActivity = max(list(cookieCounts.values())) if cookieCounts else 0
+
+    return [key for key, value in cookieCounts.items() if value == maxActivity]
+
+def getActiveCookieFile(filepath, date):
+    '''Given filepath as a string, find the most active cookie(s).'''
+    try:
+        with open(filepath, "r") as file:
+            lines = file.readlines()
+        
+        assert lines[0] == "cookie,timestamp\n"
+        
+        bestCookies = getActiveCookie(lines, date)
+        return "\n".join(bestCookies)
+    except AssertionError as e:
+        print("Input file header is not cookie,timestamp")        
+    except FileNotFoundError:
+        print("File not found at", filepath)
+
+def main():
+    parser = argparse.ArgumentParser(prog="most_active_cookie.py", \
+                                    description='Return the most active cookies for a specified day.')
+    parser.add_argument('log_file', type=str, help='Path to the cookie log file')
+    parser.add_argument('-d', '--date', type=str, required=True, \
+                        help='Date for which to find the most active cookie, in YYYY-MM-DD format')
+
+    args = parser.parse_args()
+
+    if len(args.date) != 10:
+            raise AssertionError("Input date not in YYYY-MM-DD format")
+
+    print(getActiveCookieFile(args.log_file, args.date))
+
+if __name__ == "__main__":
+    main()
