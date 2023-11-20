@@ -9,7 +9,7 @@ Files:
 
 `cookie_logic.py`: Contains core functionality
 
-`cookie_test.py`: Contains command line executable functionality
+`most_active_cookie`: Contains command line executable functionality
 
 `cookie_test.py`: Testing with Pytest
 
