@@ -1,4 +1,4 @@
-name: Test most_active_cookie
+name: build
 
 on:
   push:
