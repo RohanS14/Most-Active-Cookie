@@ -2,8 +2,8 @@
 
 import os, sys
 
-# add current working directory to path
-sys.path.insert(0, os.getcwd())
+# add path of the current file
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import pytest
 from cookie_logic import *
@@ -39,6 +39,6 @@ def testAllTiedCookie():
     assert getActiveCookieFile("tests/alltied.csv", "2018-12-09") == "\n".join(output)
 
 def testLong():
-    '''Large testsset example'''
+    '''Large file example'''
     output = ["4sMM2LxV07bPJzwf", "fbcn5UAVanZf6UtG"]
     assert getActiveCookieFile("tests/large.csv", "2018-12-08") == "\n".join(output)
